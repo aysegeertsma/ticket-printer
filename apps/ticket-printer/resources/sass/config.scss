@@ -1,0 +1,18 @@
+$pageWidth:79.9mm;
+$pageHeight:79.9mm;
+
+$margins:4.5mm;
+$fontSize:7mm;
+$lineHeight:$fontSize * 1.2;
+
+$usableWidth: $pageWidth - 2 * $margins;
+$usableHeight: $pageWidth - 2 * $margins;
+
+$headerHeight: 11mm;
+$pointsWidth: 20mm;
+
+$rotate: 90deg;
+
+$screen-font-family: Arial, Helvetica, Sans;
+
+$print-icon-size:15mm;

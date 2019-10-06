@@ -1,0 +1,19 @@
+version: "3"
+services:
+
+  web:
+    container_name: ticketprinter-homestead
+    build: .
+    restart: unless-stopped
+    ports:
+        - "8008:8008" #experiment
+        - "8000:80" # web
+        - "2222:22" # ssh
+#        - "8900:9000" #xdebug
+    volumes:
+        - ./apps:/apps # all apps
+        - ./volumes/nginx/sites-available:/etc/nginx/sites-available # nginx sites ( in case you recreate the container )
+        - ./volumes/nginx/sites-enabled:/etc/nginx/sites-enabled # nginx sites ( in case you recreate the container )
+        - ./volumes/nginx/ssl:/etc/nginx/ssl
+        - ./volumes/hosts:/etc/hosts
+#        - ./conf/php7.1/xdebug.ini:/etc/php/7.1/fpm/conf.d/40-xdebug.ini

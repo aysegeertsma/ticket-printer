@@ -1,0 +1,235 @@
+body {
+  margin:0;
+  padding:0;
+}
+
+.ticket-content {
+  font-size: $fontSize;
+  line-height: $lineHeight;
+
+  font-family: Kalam;
+  //  font-family: Share Tech;
+
+  margin:0;
+  padding:0;
+  position:relative;
+
+  .ticket-page-frame {
+
+    transition: margin 100ms;
+
+    cursor: pointer;
+
+    .print-icon {
+      width: $print-icon-size;
+      height: $print-icon-size;
+      background-color: rgba(255,255,255,.7);
+      position: absolute;
+      left: ($pageWidth - $print-icon-size) / 2;
+      top: ($pageHeight - $print-icon-size) / 2;
+      border-radius: 2mm;
+      z-index: 100;
+
+      .print-icon-image {
+        width: $print-icon-size / 3 * 2;
+        height: $print-icon-size / 3 * 2;
+        background-image: url("/img/tip-print-no.svg");
+        display: block;
+        position: absolute;
+        background-size: 100% 100%;
+        left: $print-icon-size / 6;
+        top: $print-icon-size / 6;
+      }
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.selected {
+      margin: 5mm;
+      box-shadow: rgba(0, 0, 0, .2) 0.3mm 0.3mm 1mm;
+      opacity: 1;
+      //outline: 2px solid rgba(70, 113, 139, 0.8);
+
+      .print-icon {
+        .print-icon-image {
+          background-image: url(/img/tip-print-yes.svg);
+        }
+      }
+
+    }
+
+    //background-image: url("/img/watermark.png");
+    background-size: 100% 100%;
+
+    float:left;
+
+    background-color: #f2f2ce;
+
+    display: block;
+    position: relative;
+
+    margin: 4mm 6mm 6mm 4mm;
+    padding:0;
+    box-shadow: rgba(0, 0, 0, 0.2) 1.3mm 1.3mm 3mm 0mm;
+    opacity: .7;
+
+    width: $pageWidth;
+    height: $pageHeight;
+
+    page-break-after: always;
+
+    .ticket-page-margin {
+      //      background-color: rgba(255,255,255,.7);
+      display: block;
+      position:absolute;
+      left:$margins + .25mm;
+      top:$margins - .25mm;
+      width: $usableWidth;
+      height: $usableHeight;
+      transform-origin: $usableWidth/2 $usableHeight/2;
+    }
+
+    .header {
+      font-size: $fontSize * 1.5 + 1mm;
+      display: block;
+      width: $usableWidth;
+      height: $headerHeight;
+
+
+      line-height: $headerHeight;
+
+
+      border-bottom: 0.5mm solid #000000;
+
+      .title {
+        display: block;
+        width: $usableWidth - $pointsWidth;
+        height: $headerHeight;
+        float:left;
+      }
+      .points {
+        height: $headerHeight;
+        width: $pointsWidth - 0.5mm;
+        text-align: center;
+        float:left;
+        border-left:0.5mm solid #000000
+      }
+
+    }
+
+    .body {
+      .description {
+        word-break: break-word;
+        margin-top:2mm;
+        height: $lineHeight * 6;
+        overflow: hidden;
+      }
+    }
+
+    .footer {
+      position:absolute;
+      bottom:0;
+      width:$usableWidth;
+      height:$fontSize*.8 + 1mm;
+    }
+
+    .label {
+      //background-color: #999999;
+      color:#000000;
+      //box-shadow: #000000 .5mm .5mm 0;
+      display: block;
+      float:left;
+      font-family: Share Tech;
+      font-size:$fontSize * .5;
+      line-height: $fontSize *.8;
+      //border:.25mm solid #000000;
+      //      border-radius: $fontSize/2;
+      margin-left:1mm;
+      height:$fontSize*.8;
+      padding: .5mm .5mm;
+      width: $usableWidth - 2mm - ($fontSize*.8 + 1mm);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .logo {
+      background-image:url('/img/enrise-logo-black-600px.png');
+      width:6.00mm * 3;
+      height:1.36mm * 3;
+      outline: 1mm solid #ff00ff;
+      background-size: 100% 100%;
+    }
+
+    .logo-mini {
+      background-image: url('/img/enrise block.png');
+      width:$fontSize*.8 + 1mm;
+      height:$fontSize*.8 + 1mm;
+      float: left;
+      background-size: 100% 100%;
+    }
+
+    .qr-code {
+      position: absolute;
+      right:0;
+      bottom:0;
+      width:15mm;
+      height:15mm;
+
+      img, svg {
+        width:100%;
+        height:100%;
+      }
+
+    }
+
+  }
+
+}
+
+
+@media print {
+
+  .no-print
+  {
+    display: none !important;
+  }
+
+  body {
+    // weird fix for bootstrap css:
+    //min-width: auto !important;
+    margin:0;
+    padding:0;
+  }
+
+  .ticket-content {
+
+    .ticket-page-frame {
+
+      .print-icon {
+        display: none;
+      }
+
+      display: none;
+
+      &.selected {
+        display: block;
+      }
+
+      transform: rotate($rotate);
+      background-color: transparent;
+
+      outline: none !important;
+      margin:0 !important;
+      float: none !important;
+      box-shadow: none !important;
+
+      .ticket-page-margin {
+      }
+
+    }
+
+  }
+}

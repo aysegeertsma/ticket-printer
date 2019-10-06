@@ -1,0 +1,12 @@
+@import "bootstrap/bootstrap-grid";
+
+// custom.scss
+@import './config.scss';
+@import './tickets.scss';
+@import './sprint-selector.scss';
+
+html {
+  font-family: $screen-font-family;
+  font-size:12px;
+}
+

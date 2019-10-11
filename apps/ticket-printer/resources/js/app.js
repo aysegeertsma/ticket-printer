@@ -1,9 +1,9 @@
-require('./bootstrap');
+//require('./bootstrap');
 
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 
-Vue.use(BootstrapVue);
+//Vue.use(BootstrapVue);
 
 Vue.component(
     'ticket-printer',
@@ -13,6 +13,3 @@ Vue.component(
 const app = new Vue({
     el: '#app'
 });
-
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap-vue/dist/bootstrap-vue.css'

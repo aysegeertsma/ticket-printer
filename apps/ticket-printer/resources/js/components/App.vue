@@ -6,22 +6,30 @@
         <div class="no-print row">
             <sprint-selector v-on:sprintSelected="loadIssues" />
         </div>
+        <div class="no-print row">
+            <ticket-filter v-on:selectAll="selectAll" v-on:selectNone="selectNone" v-on:invertSelection="invertSelection" />
+        </div>
         <div class="row">
-            <ticket-display v-bind:tickets="issues" />
+            <ticket-display v-bind:issues="issues" />
         </div>
     </div>
 </template>
 
 
 <script>
+    import axios from 'axios';
+
     import TitleBar from './TitleBar';
     import SprintSelector from './SprintSelector';
+    import TicketFilter from './TicketFilter';
     import TicketDisplay from './TicketDisplay';
+    import Issue from '../models/issue';
 
     export default {
         components: {
             TitleBar,
             SprintSelector,
+            TicketFilter,
             TicketDisplay
         },
 
@@ -39,10 +47,30 @@
 
                 axios.get('/api/issues/' + sprintId)
                     .then(function (response) {
-                        self.issues = response.data;
+                        response.data.forEach(function(value) {
+                            self.issues.push(Issue.fromObject(value));
+                        })
                     });
 
-            }
+            },
+
+            selectAll() {
+                this.issues.forEach(function(issue) {
+                    issue.select();
+                })
+            },
+
+            selectNone() {
+                this.issues.forEach(function(issue) {
+                    issue.deselect();
+                })
+            },
+
+            invertSelection() {
+                this.issues.forEach(function(issue) {
+                    issue.toggleSelected();
+                })
+            },
         }
     }
 </script>

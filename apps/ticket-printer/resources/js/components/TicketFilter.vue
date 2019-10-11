@@ -1,8 +1,20 @@
 <template>
-    <div class="container sprint-selector">
+    <div class="container ticket-filter">
         <div class="row">
-            <dropdown dropdown-title="Boards" v-bind:list-options="boards" v-on:change="selectBoard" />
-            <dropdown dropdown-title="Sprints" v-bind:list-options="sprints" v-on:change="selectSprint" />
+            <div class="col-1">
+<!--                Find-->
+            </div>
+            <div class="col-8">
+<!--                <input type="text">-->
+            </div>
+            <div class="col-1">
+                Select
+            </div>
+            <div class="col-2">
+                <button v-on:click="$emit('selectAll')">All</button> /
+                <button v-on:click="$emit('invertSelection')">Invert</button> /
+                <button v-on:click="$emit('selectNone')">None</button>
+            </div>
         </div>
     </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
     <div class="ticket-content">
-        <span v-for="n in tickets">
-            <ticket :ticket="n"/>
+        <span v-for="i in issues">
+            <ticket :issue="i"/>
         </span>
     </div>
 </template>
@@ -17,7 +17,7 @@
     },
 
     props: {
-        tickets: {
+        issues: {
             type: Array,
             default: [],
         }

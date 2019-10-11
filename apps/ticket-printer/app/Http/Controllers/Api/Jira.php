@@ -58,11 +58,7 @@ class Jira extends Controller
                 'key' => $issue->key,
                 'epic' => $this->epicFromIssue($issue),
                 'points' => (float) $issue->fields->customfield_10004,
-                'description' => str_replace(
-                    ['/', '\\'],
-                    ['&#8203;/', '&#8203;\\'],
-                    $issue->fields->summary
-                ),
+                'description' => $this->formatDescription($issue->fields->summary),
             ];
         }
 
@@ -77,5 +73,14 @@ class Jira extends Controller
         }
 
         return $epic;
+    }
+
+    private function formatDescription(string $description): string
+    {
+        return str_replace(
+            ['/', '\\'],
+            ['&#8203;/', '&#8203;\\'],
+            $description
+        );
     }
 }

@@ -6,20 +6,13 @@ body {
 .ticket-content {
   font-size: $fontSize;
   line-height: $lineHeight;
-
   font-family: Kalam;
   //  font-family: Share Tech;
-
   margin:0;
   padding:0;
   position:relative;
 
   .ticket-page-frame {
-
-    transition: margin 100ms;
-
-    cursor: pointer;
-
     .print-icon {
       width: $print-icon-size;
       height: $print-icon-size;
@@ -47,7 +40,7 @@ body {
     }
 
     &.selected {
-      margin: 5mm;
+      margin: 2mm;
       box-shadow: rgba(0, 0, 0, .2) 0.3mm 0.3mm 1mm;
       opacity: 1;
       //outline: 2px solid rgba(70, 113, 139, 0.8);
@@ -59,25 +52,18 @@ body {
       }
 
     }
-
-    //background-image: url("/img/watermark.png");
+    cursor: pointer;
     background-size: 100% 100%;
-
     float:left;
-
     background-color: #f2f2ce;
-
     display: block;
     position: relative;
-
-    margin: 4mm 6mm 6mm 4mm;
+    margin: 1mm 3mm 3mm 1mm;
     padding:0;
     box-shadow: rgba(0, 0, 0, 0.2) 1.3mm 1.3mm 3mm 0mm;
     opacity: .7;
-
     width: $pageWidth;
     height: $pageHeight;
-
     page-break-after: always;
 
     .ticket-page-margin {
@@ -96,11 +82,7 @@ body {
       display: block;
       width: $usableWidth;
       height: $headerHeight;
-
-
       line-height: $headerHeight;
-
-
       border-bottom: 0.5mm solid #000000;
 
       .title {
@@ -109,6 +91,7 @@ body {
         height: $headerHeight;
         float:left;
       }
+
       .points {
         height: $headerHeight;
         width: $pointsWidth - 0.5mm;
@@ -177,16 +160,12 @@ body {
       bottom:0;
       width:15mm;
       height:15mm;
-
       img, svg {
         width:100%;
         height:100%;
       }
-
     }
-
   }
-
 }
 
 
@@ -211,16 +190,13 @@ body {
       .print-icon {
         display: none;
       }
-
       display: none;
 
       &.selected {
         display: block;
       }
-
       transform: rotate($rotate);
       background-color: transparent;
-
       outline: none !important;
       margin:0 !important;
       float: none !important;

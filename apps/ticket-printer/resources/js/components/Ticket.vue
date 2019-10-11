@@ -1,19 +1,19 @@
 <template>
-    <div v-bind:class="['ticket-page-frame', { selected: isSelected }]" v-on:click="ticketClick">
+    <div v-bind:class="['ticket-page-frame', { selected: issue.selected }]" v-on:click="ticketClick">
         <div class="print-icon">
             <div class="print-icon-image"></div>
         </div>
         <div class="ticket-page-margin">
             <div class="header">
-                <div class="title">{{ ticket.key }}</div>
-                <div class="points">{{ ticket.points }}</div>
+                <div class="title">{{ issue.key }}</div>
+                <div class="points">{{ issue.points }}</div>
             </div>
             <div class="body">
-                <div class="description" v-html="ticket.description">{{ ticket.description }}</div>
+                <div class="description" v-html="issue.description">{{ issue.description }}</div>
             </div>
             <div class="footer">
                 <div class="logo-mini"></div>
-                <div class="epic label">{{ ticket.epic }}</div>
+                <div class="epic label">{{ issue.epic }}</div>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
 
 export default {
     props: {
-        ticket: {
+        issue: {
             type: Object,
             default: {},
         },
@@ -38,8 +38,7 @@ export default {
 
     methods: {
         ticketClick: function() {
-            console.log('click');
-            this.isSelected = !this.isSelected;
+            this.issue.toggleSelected();
         },
     },
 }

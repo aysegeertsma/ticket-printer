@@ -2,13 +2,13 @@
     <div class="container ticket-filter">
         <div class="row">
             <div class="col-1">
-<!--                Find-->
+                Filter
             </div>
             <div class="col-8">
-<!--                <input type="text">-->
+                <input type="text" v-on:keyup="$emit('textFilterChange', $event.target.value)">
             </div>
             <div class="col-1">
-                Select
+                Select for printing
             </div>
             <div class="col-2">
                 <button v-on:click="$emit('selectAll')">All</button> /

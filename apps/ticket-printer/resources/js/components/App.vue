@@ -7,7 +7,7 @@
             <sprint-selector v-on:sprintSelected="loadIssues" />
         </div>
         <div class="no-print row">
-            <ticket-filter v-on:selectAll="selectAll" v-on:selectNone="selectNone" v-on:invertSelection="invertSelection" />
+            <ticket-filter v-on:textFilterChange="filter" v-on:selectAll="selectAll" v-on:selectNone="selectNone" v-on:invertSelection="invertSelection" />
         </div>
         <div class="row">
             <ticket-display v-bind:issues="issues" />
@@ -24,6 +24,7 @@
     import TicketFilter from './TicketFilter';
     import TicketDisplay from './TicketDisplay';
     import Issue from '../models/issue';
+    import IssueFilter from '../models/issue-filter';
 
     export default {
         components: {
@@ -35,6 +36,7 @@
 
         data: function() {
             return {
+                loadedIssues: [],
                 issues: [],
             };
         },
@@ -43,13 +45,15 @@
             loadIssues(sprintId) {
                 var self = this;
 
+                this.loadedIssues = [];
                 this.issues = [];
 
                 axios.get('/api/issues/' + sprintId)
                     .then(function (response) {
                         response.data.forEach(function(value) {
                             self.issues.push(Issue.fromObject(value));
-                        })
+                            self.loadedIssues.push(Issue.fromObject(value));
+                        });
                     });
 
             },
@@ -71,6 +75,10 @@
                     issue.toggleSelected();
                 })
             },
+
+            filter(string) {
+                this.issues = IssueFilter.filter(string,this.loadedIssues);
+            }
         }
     }
 </script>

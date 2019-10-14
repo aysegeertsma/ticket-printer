@@ -3,7 +3,7 @@ export default class IssueFilter {
     static filter(searchString, arrayOfIssues)
     {
         let output = [];
-        let regEx = new RegExp(searchString, "i");
+        let regEx = new RegExp(searchString.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), "i");
 
         arrayOfIssues.forEach(function (value) {
             if(value.key.search(regEx)>=0) {
